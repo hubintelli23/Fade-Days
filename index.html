@@ -1,69 +1,31 @@
 <!doctype html>
+<!-- Fade & Days v0.2.0 -->
 <html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f5f1e9">
-<title>Fade & Days</title>
-<style>
-:root{--bg:#f5f1e9;--paper:#fffdf8;--ink:#39352f;--muted:#938b7f;--line:#e8e1d5;--accent:#9a7658;--soft:#eee6da}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"Noto Sans KR",system-ui,sans-serif}
-button,input,textarea{font:inherit}button{cursor:pointer}
-.app{max-width:1060px;margin:auto;min-height:100vh;padding:28px 28px 100px}
-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px}
-.brand{font-family:Georgia,serif;font-size:25px;letter-spacing:.04em}.brand small{display:block;font:10px system-ui;letter-spacing:.22em;color:var(--muted);margin-top:5px}
-.iconbtn{border:1px solid var(--line);background:var(--paper);width:42px;height:42px;border-radius:50%;color:var(--ink)}
-main{max-width:850px;margin:auto}.eyebrow{font-size:11px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
-h1{font-family:Georgia,"Noto Serif KR",serif;font-size:clamp(32px,5vw,48px);font-weight:400;margin:10px 0 8px}
-.sub{color:var(--muted);font-size:14px;margin:0 0 28px}
-.feature{background:var(--paper);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:grid;grid-template-columns:1.1fr .9fr;min-height:260px}
-.feature-img{min-height:260px;background:linear-gradient(135deg,#b7a58d,#e4d5bd 48%,#7e8276);position:relative;overflow:hidden}
-.feature-img:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#352c2540,transparent 65%)}
-.sun{position:absolute;width:110px;height:110px;border-radius:50%;background:#f6e8c6;right:18%;top:18%;filter:blur(1px);opacity:.9}
-.horizon{position:absolute;left:-10%;right:-10%;height:45%;bottom:-7%;background:linear-gradient(160deg,#59675f,#899080 55%,#c5b59d);clip-path:polygon(0 38%,22% 12%,43% 34%,66% 4%,100% 32%,100% 100%,0 100%)}
-.feature-copy{padding:30px;display:flex;flex-direction:column;justify-content:center}.feature-copy h2{font-family:Georgia,serif;font-weight:400;font-size:27px;margin:12px 0}.feature-copy p{font-size:14px;line-height:1.8;color:var(--muted);margin:0}
-.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:36px 0 16px}.sectionhead h2{font:400 22px Georgia,serif;margin:0}.textbtn{border:0;background:none;color:var(--accent);font-size:13px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.memory{background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden}.thumb{height:150px;position:relative;background:linear-gradient(140deg,#c8b49a,#e9ddc9 55%,#788477)}.thumb.two{background:linear-gradient(140deg,#7f8b8a,#c6c4b3 50%,#e6d7bd)}.thumb.three{background:linear-gradient(140deg,#b18e78,#ead9c5 55%,#827d70)}.memorybody{padding:14px}.memorybody strong{font-size:14px;font-weight:600}.memorybody small{display:block;color:var(--muted);font-size:11px;margin-top:6px}
-.empty{padding:36px;text-align:center;background:var(--paper);border:1px dashed var(--line);border-radius:16px;color:var(--muted);font-size:14px}
-nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:4px;padding:7px;background:#fffdf8ed;border:1px solid var(--line);border-radius:999px;box-shadow:0 8px 30px #40332214;backdrop-filter:blur(12px);z-index:5}
-nav button{border:0;background:transparent;color:var(--muted);padding:10px 17px;border-radius:999px;font-size:12px}
-nav button.active{background:var(--soft);color:var(--ink)}
-.page{display:none}.page.active{display:block}
-.toolbar{display:flex;gap:10px;align-items:center;margin:20px 0}.primary{border:0;border-radius:999px;background:var(--ink);color:white;padding:12px 18px;font-size:13px}.secondary{border:1px solid var(--line);border-radius:999px;background:var(--paper);padding:11px 16px;color:var(--ink);font-size:13px}
-.albumgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.album{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px}.album .thumb{height:125px;border-radius:10px;margin-bottom:13px}.album p{font-size:12px;color:var(--muted);margin:6px 0 0}
-.profile{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px}.avatar{width:64px;height:64px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font:26px Georgia;margin-bottom:14px}
-.modal{position:fixed;inset:0;background:#211d19a8;display:none;align-items:center;justify-content:center;padding:18px;z-index:10}.modal.open{display:flex}.dialog{width:min(480px,100%);background:var(--paper);border-radius:20px;padding:24px}.dialog h2{font:400 25px Georgia;margin:0 0 18px}.field{display:block;margin:13px 0}.field span{display:block;font-size:12px;color:var(--muted);margin-bottom:7px}.field input,.field textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px;background:#fff;font-size:14px;color:var(--ink)}.field textarea{min-height:90px;resize:vertical}.dialogactions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
-footer{text-align:center;color:#aaa092;font-size:10px;margin:42px 0 0}
-@media(max-width:680px){.app{padding:20px 16px 100px}.feature{grid-template-columns:1fr}.feature-img{min-height:190px}.feature-copy{padding:22px}.cards{grid-template-columns:repeat(2,1fr);gap:10px}.thumb{height:120px}.albumgrid{grid-template-columns:1fr}nav{width:calc(100% - 28px);justify-content:space-around}nav button{padding:10px 12px}.sectionhead{margin-top:28px}}
-</style>
-</head>
-<body>
-<div class="app">
-<header><div class="brand">Fade & Days<small>EVERY MOMENT LEAVES A LITTLE COLOR</small></div><button class="iconbtn" aria-label="설정" onclick="showPage('my')">⚙</button></header>
-<main>
-<section id="home" class="page active">
-<div class="eyebrow">A LITTLE MOMENT, TODAY</div><h1>오늘의 순간</h1><p class="sub">평범한 하루도 기록하면 오래도록 남으니까.</p>
-<div class="feature"><div class="feature-img"><div class="sun"></div><div class="horizon"></div></div><div class="feature-copy"><div class="eyebrow">MEMORY OF THE DAY</div><h2>햇살이 머물던 오후</h2><p>잠시 멈춰 바라본 풍경.<br>오늘의 작은 순간을 여기에 남겨 보세요.</p></div></div>
-<div class="sectionhead"><h2>최근 기록</h2><button class="textbtn" onclick="showPage('timeline')">모두 보기 →</button></div>
-<div id="recent" class="cards">
-<article class="memory"><div class="thumb"></div><div class="memorybody"><strong>바다를 보던 날</strong><small>2026.11.12</small></div></article>
-<article class="memory"><div class="thumb two"></div><div class="memorybody"><strong>오래 머문 서점</strong><small>2026.11.10</small></div></article>
-<article class="memory"><div class="thumb three"></div><div class="memorybody"><strong>느린 오후</strong><small>2026.11.08</small></div></article>
-</div>
-</section>
-<section id="timeline" class="page"><div class="eyebrow">YOUR DAYS, IN ORDER</div><h1>타임라인</h1><p class="sub">시간을 따라 다시 만나는 기록.</p><div class="toolbar"><button class="primary" onclick="openModal()">＋ 기록 추가</button></div><div id="timelineList" class="cards"><div class="empty">아직 새로 작성한 기록이 없어요.</div></div></section>
-<section id="albums" class="page"><div class="eyebrow">COLLECT YOUR MOMENTS</div><h1>앨범</h1><p class="sub">기억하고 싶은 순간을 주제별로 모아 보세요.</p><div class="albumgrid"><article class="album"><div class="thumb"></div><strong>일상</strong><p>매일의 작은 기록 · 샘플</p></article><article class="album"><div class="thumb two"></div><strong>여행</strong><p>함께 떠난 장소들 · 샘플</p></article><article class="album"><div class="thumb three"></div><strong>소중한 날</strong><p>오래 간직하고 싶은 순간 · 샘플</p></article></div></section>
-<section id="my" class="page"><div class="eyebrow">YOUR SPACE</div><h1>마이</h1><p class="sub">나만의 기록 공간을 관리해요.</p><div class="profile"><div class="avatar">F</div><strong>나의 페이드 앤 데이즈</strong><p style="color:var(--muted);font-size:13px">프로필과 앱 설정은 다음 개발 단계에서 연결할 예정이에요.</p><button class="secondary" onclick="alert('설정 기능은 다음 단계에서 추가할 예정입니다.')">앱 설정</button></div></section>
-</main>
-<footer>FADE & DAYS · A PRIVATE SPACE FOR YOUR MEMORIES</footer>
-</div>
-<nav aria-label="주 메뉴"><button class="active" data-page="home" onclick="showPage('home')">⌂ 홈</button><button data-page="timeline" onclick="showPage('timeline')">▤ 타임라인</button><button data-page="albums" onclick="showPage('albums')">▧ 앨범</button><button data-page="my" onclick="showPage('my')">○ 마이</button></nav>
-<div class="modal" id="modal"><div class="dialog"><h2>새로운 기록</h2><form id="memoryForm"><label class="field"><span>제목</span><input id="title" required maxlength="50" placeholder="오늘의 순간을 적어 주세요"></label><label class="field"><span>날짜</span><input id="date" type="date" required></label><label class="field"><span>짧은 메모</span><textarea id="description" maxlength="300" placeholder="이날의 기억을 남겨 보세요."></textarea></label><div class="dialogactions"><button type="button" class="secondary" onclick="closeModal()">취소</button><button class="primary" type="submit">기록 추가</button></div></form></div></div>
-<script>
-function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo({top:0,behavior:'smooth'})}
-function openModal(){document.getElementById('date').value=new Date().toISOString().slice(0,10);document.getElementById('modal').classList.add('open')}
-function closeModal(){document.getElementById('modal').classList.remove('open')}
-document.getElementById('memoryForm').addEventListener('submit',e=>{e.preventDefault();const title=document.getElementById('title').value.trim();const date=document.getElementById('date').value;const desc=document.getElementById('description').value.trim();const card=document.createElement('article');card.className='memory';const thumb=document.createElement('div');thumb.className='thumb';const body=document.createElement('div');body.className='memorybody';const strong=document.createElement('strong');strong.textContent=title;const small=document.createElement('small');small.textContent=date.replaceAll('-','.');body.append(strong,small);if(desc){const p=document.createElement('p');p.textContent=desc;p.style.cssText='font-size:12px;color:#938b7f;line-height:1.6';body.append(p)}card.append(thumb,body);const list=document.getElementById('timelineList');if(list.querySelector('.empty'))list.innerHTML='';list.prepend(card);closeModal();e.target.reset();showPage('timeline')});
-document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
-</script>
-</body></html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f5f1e9" />
+    <meta name="description" content="사진과 기록으로 소중한 순간을 보관하는 추억 아카이브" />
+
+    <!-- 웹앱(PWA) -->
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Fade & Days" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600&family=Noto+Serif+KR:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Fade & Days</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
