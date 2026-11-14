@@ -1,0 +1,1 @@
+import{c as o}from"./chunk-VAE7UHVZ.js";o();var e="0.3.0";var s={memoryTitle:50,memoryNote:1e3,albumTitle:30,albumDescription:100,logText:300,displayName:20},r="local-user";export{e as a,s as b,r as c};

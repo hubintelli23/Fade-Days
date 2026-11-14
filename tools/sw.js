@@ -7,7 +7,7 @@
  *
  * 새 버전을 배포할 때는 아래 VERSION을 바꾸면 이전 캐시가 정리된다.
  */
-const VERSION = 'v0.2.1';
+const VERSION = 'v0.3.0';
 const CACHE = `fade-and-days-${VERSION}`;
 const SHELL = ['./', './index.html', './config.js', './manifest.webmanifest', './favicon.svg', './icons/icon-192.png', './icons/icon-512.png'];
 const FONT_HOSTS = ['fonts.googleapis.com', 'fonts.gstatic.com'];
