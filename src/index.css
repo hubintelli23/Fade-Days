@@ -1,0 +1,96 @@
+@import 'tailwindcss';
+
+/* 디자인 토큰: 프로토타입의 크림 · 베이지 · 브라운 팔레트 */
+@theme {
+  --color-bg: #f5f1e9;
+  --color-paper: #fffdf8;
+  --color-ink: #39352f;
+  --color-muted: #938b7f;
+  --color-line: #e8e1d5;
+  --color-accent: #9a7658;
+  --color-soft: #eee6da;
+  --color-danger: #b4563f;
+
+  --font-sans: 'Noto Sans KR', system-ui, -apple-system, sans-serif;
+  --font-serif: Georgia, 'Noto Serif KR', serif;
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-bg text-ink font-sans antialiased;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: default;
+  }
+  input,
+  textarea,
+  select {
+    @apply text-ink;
+  }
+}
+
+/* 사진이 없을 때 보이는 따뜻한 그라데이션 */
+@utility placeholder-1 {
+  background: linear-gradient(140deg, #c8b49a, #e9ddc9 55%, #788477);
+}
+@utility placeholder-2 {
+  background: linear-gradient(140deg, #7f8b8a, #c6c4b3 50%, #e6d7bd);
+}
+@utility placeholder-3 {
+  background: linear-gradient(140deg, #b18e78, #ead9c5 55%, #827d70);
+}
+
+@utility eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+@utility field {
+  width: 100%;
+  border: 1px solid var(--color-line);
+  border-radius: 10px;
+  padding: 11px 12px;
+  background: #fff;
+  font-size: 15px;
+  outline: none;
+  &:focus {
+    border-color: var(--color-accent);
+  }
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility pb-safe {
+  padding-bottom: max(18px, env(safe-area-inset-bottom));
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@utility animate-sheet {
+  animation: sheet-in 0.22s ease-out;
+}
+@utility animate-fade {
+  animation: fade-in 0.18s ease-out;
+}
